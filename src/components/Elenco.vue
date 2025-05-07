@@ -1,0 +1,137 @@
+<template>
+    <div class="page-container">
+      <div class="header-image">
+        <h1 class="header-title">I NOSTRI POI</h1>
+      </div>
+  
+      <div class="list-button" style="text-align:left; margin-left:20px">
+        <div @click="goToMappa()" class="link">
+          <span class="arrow">←</span>
+          Visualizza la mappa 
+        </div>
+      </div>
+  
+      <div class="masonry-container">
+        <div
+          v-for="poi in pois"
+          :key="poi.id"
+          class="poi-card"
+          :style="{ backgroundImage: 'url(' + getImageUrl(poi.cover) + ')' }"
+          @click="goToScheda(poi)"
+        >
+          <div class="poi-title">{{ poi.titolo }}</div>
+        </div>
+      </div>
+    </div>
+  </template>
+  
+  <script setup>
+  import { ref, onMounted } from "vue";
+  import { useRoute, useRouter } from "vue-router";
+  
+  const route = useRoute();
+  const router = useRouter();
+    const pois = ref([]);
+  
+  function goToMappa() {
+    router.push({ name: "Mappa", params: { lingua: route.params.lingua } });
+}
+ function goToScheda (poi){
+    let mypoi=JSON.stringify(poi)
+    router.push({ name: "Scheda", params: { lingua: route.params.lingua,item:mypoi } });
+
+ } 
+  function getImageUrl(coverId) {
+    return `http://195.231.23.205:8079/assets/${coverId}`;
+  }
+  
+  onMounted(async () => {
+    try {
+      const response = await fetch('http://195.231.23.205:8079/items/POI?sort=-numero');
+      const json = await response.json();
+      pois.value = (json.data || []).filter(item => item.app_ts?.includes("APP"));
+    } catch (error) {
+      console.error("Error al obtener los POI:", error);
+    }
+  });
+  </script>
+  
+  <style scoped>
+  .page-container {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    width: 100vw;
+    font-family: Arial, sans-serif;
+    overflow-x: hidden;
+    box-sizing: border-box;
+  }
+  
+  .header-image {
+    position: relative;
+    height: 180px;
+    background-image: url('/2-la-madonna-odigitria.jpg');
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    filter: brightness(1.3);
+  }
+  
+  .header-title {
+    color: white;
+    font-size: 2rem;
+    font-weight: bold;
+    background-color: rgba(0, 0, 0, 0.5);
+    padding: 0.5rem 1rem;
+    border-radius: 10px;
+  }
+  
+  .list-button {
+    text-align: center;
+    margin: 1rem 0;
+  }
+  
+  .link {
+    color: #c20000;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 1rem;
+    cursor: pointer;
+  }
+  
+  .arrow {
+    margin-right: 0.3rem;
+  }
+  
+  /* MASONRY LAYOUT */
+  .masonry-container {
+    column-count: 2;
+    column-gap: 1rem;
+    padding: 1rem;
+  }
+  
+  .poi-card {
+    background-size: cover;
+    background-position: center;
+    border-radius: 10px;
+    margin-bottom: 1rem;
+    break-inside: avoid;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    min-height: 150px;
+    padding: 1rem;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+  }
+  
+  .poi-title {
+    background-color: rgba(0, 0, 0, 0.4);
+    padding: 0.5rem;
+    border-radius: 5px;
+    text-align: center;
+  }
+  </style>
+  

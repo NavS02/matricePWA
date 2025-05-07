@@ -1,0 +1,175 @@
+<template>
+  <div class="page-container">
+    <div class="top-bar">
+      <button class="back-button" @click="goBack">
+        <svg
+          fill="#fcfcfc"
+          width="16px"
+          height="16px"
+          viewBox="0 0 24 24"
+          id="left-arrow"
+          data-name="Flat Line"
+          xmlns="http://www.w3.org/2000/svg"
+          class="icon flat-line"
+        >
+          <line
+            id="primary"
+            x1="21"
+            y1="12"
+            x2="3"
+            y2="12"
+            style="
+              fill: none;
+              stroke: rgb(0, 0, 0);
+              stroke-linecap: round;
+              stroke-linejoin: round;
+              stroke-width: 2;
+            "
+          ></line>
+          <polyline
+            id="primary-2"
+            data-name="primary"
+            points="6 9 3 12 6 15"
+            style="
+              fill: none;
+              stroke: rgb(0, 0, 0);
+              stroke-linecap: round;
+              stroke-linejoin: round;
+              stroke-width: 2;
+            "
+          ></polyline>
+        </svg>
+        Torna indietro
+      </button>
+    </div>
+
+    <img
+      v-if="parsedItem?.cover"
+      :src="getImageUrl(parsedItem.cover)"
+      class="main-image"
+      alt="Immagine principale"
+      style="max-width: 400px; max-height: 400px"
+    />
+
+    <h2 class="title">{{ parsedItem?.titolo }}</h2>
+
+    <div style="padding-bottom: 10px">
+      <hr />
+      <ul class="meta">
+        <li v-if="parsedItem?.autore">
+          <em>{{ parsedItem?.autore }}</em>
+        </li>
+        <li v-if="parsedItem?.data">
+          <em>{{ parsedItem?.data }}</em>
+        </li>
+        <li v-if="parsedItem?.soggetto">
+          <em>{{ parsedItem?.soggetto }}</em>
+        </li>
+      </ul>
+      <hr />
+
+      <div class="descrizione" v-html="parsedItem?.descrizione"></div>
+    </div>
+  </div>
+</template>
+
+<script setup>
+import { defineProps, computed } from "vue";
+import { useRouter } from "vue-router";
+
+const router = useRouter();
+
+const goBack = () => {
+  router.back();
+};
+
+const props = defineProps({
+  item: {
+    type: String,
+    required: true,
+  },
+});
+
+const parsedItem = computed(() => {
+  try {
+    return JSON.parse(props.item);
+  } catch (e) {
+    console.error("Error parsing JSON:", e);
+    return null;
+  }
+});
+
+const getImageUrl = (uuid) => {
+  return `http://195.231.23.205:8079/assets/${uuid}`;
+};
+</script>
+
+<style scoped>
+.page-container {
+  font-family: Arial, sans-serif;
+}
+
+.top-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo {
+  height: 40px;
+}
+
+.menu-icon {
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+.main-image {
+  width: 100%;
+  margin: 0rem 0;
+  border-radius: 8px;
+  object-fit: cover;
+}
+
+.title {
+  font-size: 1.25rem;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+.mini-map {
+  width: 100%;
+  margin-bottom: 1rem;
+  border-radius: 8px;
+  object-fit: cover;
+}
+
+.meta {
+  text-align: left;
+  list-style-type: disc;
+  padding-left: 1.25rem;
+  margin-bottom: 1rem;
+}
+
+.descrizione {
+  text-align: left;
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+.back-button {
+  background-color: #c20000;
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  margin: 1rem 01rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.back-button:hover {
+  background-color: #a10000;
+}
+</style>
