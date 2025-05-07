@@ -47,7 +47,7 @@
   
   onMounted(async () => {
     try {
-      const response = await fetch('https://directusmatrice.vidimus.it/items/POI?sort=-numero');
+      const response = await fetch('https://directusmatrice.vidimus.it/items/POI?sort=numero');
       const json = await response.json();
       pois.value = (json.data || []).filter(item => item.app_ts?.includes("APP"));
     } catch (error) {
