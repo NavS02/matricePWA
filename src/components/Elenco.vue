@@ -1,8 +1,8 @@
 <template>
     <div class="page-container">
       <div class="header-image">
-        <h1 class="header-title">I NOSTRI POI</h1>
-      </div>
+      <img src="/logoFiore2.svg" alt="IMAGE" class="main-image" />
+    </div>
   
       <div class="list-button" style="text-align:left; margin-left:20px">
         <div @click="goToMappa()" class="link">
@@ -67,17 +67,7 @@
     box-sizing: border-box;
   }
   
-  .header-image {
-    position: relative;
-    height: 180px;
-    background-image: url('/2-la-madonna-odigitria.jpg');
-    background-size: cover;
-    background-position: center;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    filter: brightness(1.3);
-  }
+
   
   .header-title {
     color: white;

@@ -53,7 +53,7 @@ function goToStoria(){
 
     <div :class="['sidebar', { 'sidebar-open': sidebarOpen }]">
       <div class="sidebar-header">
-        <button class="close-btn" @click="toggleSidebar">✖</button>
+        <button class="close-btn" style="background-color:transparent !important ;" @click="toggleSidebar">✖</button>
       </div>
       <div class="sidebar-menu">
         <div style="text-align: center">

@@ -1,6 +1,11 @@
 <template>
   <div class="page-container" v-if="info">
-    <h3>{{ info.titolo }}</h3>
+    <div class="header-image">
+      <img src="/logoFiore2.svg" alt="IMAGE" class="main-image" style="" />
+    </div>
+
+
+    <!-- <h3>{{ info.titolo }}</h3> -->
     <br />
 
     <div v-if="info.gallery?.length" class="gallery">
@@ -26,7 +31,7 @@
         ></span>
       </div>
     </div>
-    <p v-html="info.introduzione" style="text-align: justify"></p>
+    <p v-html="info.introduzione" style="text-align: justify;font-size:20px"></p>
     <p v-html="info.storia" style="text-align: justify"></p>
   </div>
 </template>
@@ -84,7 +89,7 @@ const onScroll = () => {
   width: 100vw;
   font-family: Arial, sans-serif;
   box-sizing: border-box;
-  padding: 5%;
+  padding: 6%;
 }
 
 .gallery-scroll {
@@ -103,8 +108,8 @@ const onScroll = () => {
   scroll-snap-align: center;
   flex: 0 0 100%;
   width: 100%;
-  height: 200px;
-  object-fit: cover;
+  height: 300px;
+  object-fit:cover;
   border-radius: 8px;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
 }

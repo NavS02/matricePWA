@@ -21,11 +21,15 @@ function selectLingua(lingua) {
 
 <template>
   <div class="container">
-    <img src="/logoAND.png" alt="IMAGE" class="main-image" />
+    <img src="/logo3rige.png" alt="IMAGE" class="main-image" />
 
-    <h1 class="title">SELEZIONA UNA LINGUA</h1>
+    <!-- <h1 class="title">SELEZIONA UNA LINGUA</h1> -->
 
     <div class="cards-wrapper">
+      <div class="card" @click="selectLingua('italiano')">
+        <img src="/italy-flag-round-large.png" alt="ITALIANO" class="flag" />
+        <strong class="language">ITALIANO</strong>
+      </div>
       <div class="card" @click="selectLingua('english')">
         <img
           src="/United-kingdom_flag_icon_round.svg.png"
@@ -35,20 +39,27 @@ function selectLingua(lingua) {
         <strong class="language">ENGLISH</strong>
       </div>
 
-      <div class="card" @click="selectLingua('italiano')">
-        <img src="/italy-flag-round-large.png" alt="ITALIANO" class="flag" />
-        <strong class="language">ITALIANO</strong>
-      </div>
+   
     </div>
   </div>
 </template>
 
 <style scoped>
 .container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center; 
+  align-items: center;     
+  min-height: 100vh;
   text-align: center;
-  min-height: 90vh;
-  padding-top: 100px;
   box-sizing: border-box;
+  background-image: url("/Mediamodifier-Design.svg");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 4000px;
+  background-position-x: -900px;
+  background-position-y: -900px;
+  
 }
 
 .main-image {

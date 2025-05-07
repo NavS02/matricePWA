@@ -1,9 +1,12 @@
 <template>
   <div class="page-container">
+    <div class="header-image">
+      <img src="/logoFiore2.svg" alt="IMAGE" class="main-image" />
+    </div>
     <div class="top-bar">
       <button class="back-button" @click="goBack">
         <svg
-          fill="#fcfcfc"
+          fill="#FFFFFF"
           width="16px"
           height="16px"
           viewBox="0 0 24 24"
@@ -20,7 +23,7 @@
             y2="12"
             style="
               fill: none;
-              stroke: rgb(0, 0, 0);
+              stroke: rgb(255,255,255);
               stroke-linecap: round;
               stroke-linejoin: round;
               stroke-width: 2;
@@ -32,7 +35,7 @@
             points="6 9 3 12 6 15"
             style="
               fill: none;
-              stroke: rgb(0, 0, 0);
+              stroke: rgb(255,255,255);
               stroke-linecap: round;
               stroke-linejoin: round;
               stroke-width: 2;
@@ -53,9 +56,12 @@
 
     <h2 class="title">{{ parsedItem?.titolo }}</h2>
 
-    <div style="padding-bottom: 10px">
+    <div
+      style="padding-bottom: 10px"
+      v-if="parsedItem?.autore || parsedItem?.data || parsedItem?.soggetto"
+    >
       <hr />
-      <ul class="meta">
+      <ul class="meta" style="padding-left: 10%">
         <li v-if="parsedItem?.autore">
           <em>{{ parsedItem?.autore }}</em>
         </li>
@@ -67,9 +73,12 @@
         </li>
       </ul>
       <hr />
-
-      <div class="descrizione" v-html="parsedItem?.descrizione"></div>
     </div>
+    <div
+      class="descrizione"
+      v-html="parsedItem?.descrizione"
+      style="margin: 2%"
+    ></div>
   </div>
 </template>
 
@@ -106,7 +115,16 @@ const getImageUrl = (uuid) => {
 
 <style scoped>
 .page-container {
-  font-family: Arial, sans-serif;
+  text-align: center;
+  min-height: 90vh;
+  box-sizing: border-box;
+  background-image: url("/Mediamodifier-Design.svg");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 4000px;
+  background-position-x: -900px;
+  background-position-y: -900px;
+  
 }
 
 .top-bar {
@@ -123,7 +141,9 @@ const getImageUrl = (uuid) => {
   font-size: 1.5rem;
   cursor: pointer;
 }
-
+h2{
+  color:rgb(181, 113, 113)
+}
 .main-image {
   width: 100%;
   margin: 0rem 0;

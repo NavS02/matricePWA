@@ -6,7 +6,7 @@
     <div class="cards-wrapper">
       <div class="card" @click="selectOption('storia')">
 
-        <strong class="language">LA NOSTRA STORIA (Attivo)</strong>
+        <strong class="language">STORIA (Attivo)</strong>
       </div>
 
       <div class="card" @click="selectOption('mappa')">
@@ -17,14 +17,16 @@
     <div class="cards-wrapper">
       <div class="card" @click="selectOption('informazione')">
 
-        <strong class="language">INFORMAZIONE</strong>
+        <strong class="language">LISTA OPERE</strong>
       </div>
 
       <div class="card" @click="selectOption('contatti')">
-        <strong class="language">CONTATTI</strong>
+        <strong class="language">INFORMAZIONE</strong>
 
       </div>
     </div>
+    <br>
+    <br>
     <div style="text-align:center">CREDITI</div>
   </div>
 </template>
