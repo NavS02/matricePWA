@@ -9,7 +9,7 @@
           v-for="(item, index) in info.gallery"
           :key="index"
           :src="
-            'http://195.231.23.205:8079/assets/' + item.directus_files_id.id
+            'https://directusmatrice.vidimus.it/assets/' + item.directus_files_id.id
           "
           :alt="item.directus_files_id.title || 'Immagine galleria'"
           class="gallery-image"
@@ -44,7 +44,7 @@ const scrollContainer = ref(null);
 onMounted(async () => {
   try {
     const response = await fetch(
-      "http://195.231.23.205:8079/items/APP/1?fields=*,gallery.*.*"
+      "https://directusmatrice.vidimus.it/items/APP/1?fields=*,gallery.*.*"
     );
     const json = await response.json();
     info.value = json.data;

@@ -47,7 +47,7 @@ function mostraVista() {
 const fetchData = async () => {
   try {
     const response = await fetch(
-      "http://195.231.23.205:8079/items/POI?fields=*.*.*"
+      "https://directusmatrice.vidimus.it/items/POI?fields=*.*.*"
     );
     const data = await response.json();
     apiData.value = data.data;
