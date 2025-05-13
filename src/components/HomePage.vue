@@ -55,7 +55,7 @@ function selectOption(option) {
 <style scoped>
 .container {
   text-align: center;
-  min-height: 90vh;
+  min-height: 100vh;
   box-sizing: border-box;
   background-image: url("/Mediamodifier-Design.svg");
   background-repeat: no-repeat;
