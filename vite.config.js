@@ -14,9 +14,9 @@ export default defineConfig({
     },
 
     manifest: {
-      name: 'my-vue-app',
-      short_name: 'my-vue-app',
-      description: 'my-vue-app',
+      name: 'Santa Maria della Strada',
+      short_name: 'Santa Maria della Strada',
+      description: 'APP Santa Maria della Strada',
       theme_color: '#ffffff',
     },
 
