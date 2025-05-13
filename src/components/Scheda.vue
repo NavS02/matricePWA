@@ -109,7 +109,7 @@ const parsedItem = computed(() => {
 });
 
 const getImageUrl = (uuid) => {
-  return `https://directusmatrice.vidimus.it/assets/${uuid}`;
+  return `https://directusmatrice.vidimus.it/assets/${uuid?.id}`;
 };
 </script>
 

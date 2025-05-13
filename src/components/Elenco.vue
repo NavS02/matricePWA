@@ -10,7 +10,7 @@
           Visualizza la mappa 
         </div>
       </div>
-  
+  <br>
       <div class="masonry-container">
         <div
           v-for="poi in pois"
@@ -21,6 +21,7 @@
         >
           <div class="poi-title">{{ poi.titolo }}</div>
         </div>
+        <br>
       </div>
     </div>
   </template>
@@ -110,7 +111,7 @@ onMounted(async () => {
   .masonry-container {
     column-count: 2;
     column-gap: 1rem;
-    padding: 1rem;
+    padding: 2rem;
   }
   
   .poi-card {
