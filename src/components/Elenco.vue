@@ -16,7 +16,7 @@
           v-for="poi in pois"
           :key="poi.id"
           class="poi-card"
-          :style="{ backgroundImage: 'url(' + getImageUrl(poi.cover) + ')' }"
+          :style="{ backgroundImage: 'url(' + getImageUrl(poi.cover?.id) + ')' }"
           @click="goToScheda(poi)"
         >
           <div class="poi-title">{{ poi.titolo }}</div>
@@ -45,15 +45,26 @@
     return `https://directusmatrice.vidimus.it/assets/${coverId}`;
   }
   
-  onMounted(async () => {
-    try {
-      const response = await fetch('https://directusmatrice.vidimus.it/items/POI?sort=numero');
-      const json = await response.json();
+onMounted(async () => {
+  try {
+    const datiMemorizzati = localStorage.getItem("poiData");
+
+    if (datiMemorizzati) {
+      const json = JSON.parse(datiMemorizzati);
+      pois.value = (json || []).filter(item => item.app_ts?.includes("APP"));
+      console.log("Dati caricati da localStorage.");
+    } else {
+      const risposta = await fetch('https://directusmatrice.vidimus.it/items/POI?sort=numero&fields=*.*.*');
+      const json = await risposta.json();
       pois.value = (json.data || []).filter(item => item.app_ts?.includes("APP"));
-    } catch (error) {
-      console.error("Error al obtener los POI:", error);
+      console.log("Dati caricati dall'API.");
     }
-  });
+  } catch (error) {
+    console.error("Errore nel ottenere i POI:", error);
+  }
+});
+
+
   </script>
   
   <style scoped>

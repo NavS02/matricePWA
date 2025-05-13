@@ -20,7 +20,6 @@ const changeLingua = (lingua) => {
   router.push({ name: 'HomePage', params: { lingua } });
   dropdownOpen.value = false;
   toggleSidebar()
-
 };
 
 function goToHomePage() {
@@ -30,13 +29,10 @@ function goToHomePage() {
 function goToMap() {
   router.push({ name: "Mappa", params: { lingua: route.params.lingua } });
   toggleSidebar()
-
-
 }
 
 function goToStoria(){
   router.push({ name: "Informazione", params: { lingua: route.params.lingua } });
-
 }
 </script>
 

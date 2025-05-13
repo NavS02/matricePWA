@@ -46,16 +46,28 @@ function mostraVista() {
 }
 const fetchData = async () => {
   try {
-    const response = await fetch(
-      "https://directusmatrice.vidimus.it/items/POI?fields=*.*.*"
-    );
-    const data = await response.json();
-    apiData.value = data.data;
-    addMarkersToMap();
+    const datiMemorizzati = localStorage.getItem("apiData");
+
+    if (datiMemorizzati) {
+      apiData.value = JSON.parse(datiMemorizzati);
+      addMarkersToMap();
+      console.log("Dati caricati da localStorage.");
+    } else {
+      const risposta = await fetch(
+        "https://directusmatrice.vidimus.it/items/POI?fields=*.*.*"
+      );
+      const dati = await risposta.json();
+      apiData.value = dati.data;
+
+      localStorage.setItem("apiData", JSON.stringify(dati.data));
+      addMarkersToMap();
+      console.log("Dati caricati dall'API e salvati in localStorage.");
+    }
   } catch (error) {
-    console.error("Error fetching data from API:", error);
+    console.error("Errore nel recuperare i dati dall'API:", error);
   }
 };
+
 
 const mostraVistaAttuale = () => {
   const bounds = [

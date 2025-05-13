@@ -1,23 +1,62 @@
 <script setup>
-import { onMounted, ref, watch } from "vue";
+import { onMounted, ref } from "vue";
 import { useRoute, useRouter } from "vue-router";
+
 const route = useRoute();
 const router = useRouter();
-const myLingua = ref();
+const miaLingua = ref();
+const datiPOI = ref([]);
+const errore = ref(null);
+
+async function caricaDatiPOI() {
+  const datiMemorizzati = localStorage.getItem("poiData");
+
+  if (datiMemorizzati) {
+    try {
+      datiPOI.value = JSON.parse(datiMemorizzati);
+      console.log("Dati caricati da localStorage.");
+    } catch (e) {
+      console.error("Errore nel parsing dei dati da localStorage:", e);
+    }
+  }
+
+  try {
+    const risposta = await fetch("https://directusmatrice.vidimus.it/items/POI?sort=numero&fields=*.*.*");
+
+    if (!risposta.ok) throw new Error("Errore nella risposta del server");
+
+    const dati = await risposta.json();
+
+    const filtrati = dati.data.filter(item => Array.isArray(item.app_ts) && item.app_ts.includes("APP"));
+
+    datiPOI.value = filtrati;
+
+    localStorage.setItem("poiData", JSON.stringify(filtrati));
+    console.log("Dati filtrati per app_ts salvati in localStorage.");
+  } catch (err) {
+    console.warn("Impossibile ottenere i dati dalla API. Uso dei dati nella cache se disponibili.");
+    errore.value = "Impossibile caricare i dati aggiornati.";
+  }
+}
 
 function selectLingua(lingua) {
   switch (lingua) {
     case "english":
       router.push({ name: "HomePage", params: { lingua: "english" } });
-
       break;
     case "italiano":
       router.push({ name: "HomePage", params: { lingua: "italiano" } });
-
       break;
   }
 }
+
+onMounted(() => {
+  caricaDatiPOI();
+});
 </script>
+
+
+
 
 <template>
   <div class="container">

@@ -2,32 +2,27 @@
   <div class="container">
     <img src="/logoFiore2.svg" alt="IMAGE" class="main-image" />
 
-
     <div class="cards-wrapper">
       <div class="card" @click="selectOption('storia')">
-
-        <strong class="language">STORIA (Attivo)</strong>
+        <strong class="language">STORIA</strong>
       </div>
 
       <div class="card" @click="selectOption('mappa')">
-        <strong class="language">MAPPA (Attivo)</strong>
-
+        <strong class="language">MAPPA</strong>
       </div>
     </div>
     <div class="cards-wrapper">
-      <div class="card" @click="selectOption('informazione')">
-
+      <div class="card" @click="selectOption('lista')">
         <strong class="language">LISTA OPERE</strong>
       </div>
 
       <div class="card" @click="selectOption('contatti')">
         <strong class="language">INFORMAZIONE</strong>
-
       </div>
     </div>
-    <br>
-    <br>
-    <div style="text-align:center">CREDITI</div>
+    <br />
+    <br />
+    <div style="text-align: center">CREDITI</div>
   </div>
 </template>
 <script setup>
@@ -41,11 +36,19 @@ function selectOption(option) {
     case "mappa":
       router.push({ name: "Mappa", params: { lingua: route.params.lingua } });
 
-      break; case "storia":
-      router.push({ name: "Informazione", params: { lingua: route.params.lingua } });
+      break;
+    case "storia":
+      router.push({
+        name: "Informazione",
+        params: { lingua: route.params.lingua },
+      });
 
       break;
 
+        case "lista":
+     router.push({ name: "Elenco", params: { lingua: route.params.lingua } });
+
+      break;
   }
 }
 </script>
@@ -60,7 +63,6 @@ function selectOption(option) {
   background-size: 4000px;
   background-position-x: -900px;
   background-position-y: -900px;
-  
 }
 
 .main-image {

@@ -48,15 +48,26 @@ const scrollContainer = ref(null);
 
 onMounted(async () => {
   try {
-    const response = await fetch(
-      "https://directusmatrice.vidimus.it/items/APP/1?fields=*,gallery.*.*"
-    );
-    const json = await response.json();
-    info.value = json.data;
+    const datiMemorizzati = localStorage.getItem("infoData");
+
+    if (datiMemorizzati) {
+      info.value = JSON.parse(datiMemorizzati);
+      console.log("Dati caricati da localStorage.");
+    } else {
+      const risposta = await fetch(
+        "https://directusmatrice.vidimus.it/items/APP/1?fields=*,gallery.*.*"
+      );
+      const json = await risposta.json();
+      info.value = json.data;
+
+      localStorage.setItem("infoData", JSON.stringify(json.data));
+      console.log("Dati caricati dall'API e salvati in localStorage.");
+    }
   } catch (error) {
-    console.error("Error al obtener los POI:", error);
+    console.error("Errore nel ottenere i POI:", error);
   }
 });
+
 
 const scrollToIndex = (index) => {
   currentIndex.value = index;
