@@ -80,7 +80,7 @@ function mostraVista() {
 }
 const fetchData = async () => {
   try {
-    const datiMemorizzati = localStorage.getItem("apiData");
+    const datiMemorizzati = localStorage.getItem("poiData");
 
     if (datiMemorizzati) {
       apiData.value = JSON.parse(datiMemorizzati);
@@ -93,7 +93,7 @@ const fetchData = async () => {
       const dati = await risposta.json();
       apiData.value = dati.data;
 
-      localStorage.setItem("apiData", JSON.stringify(dati.data));
+      localStorage.setItem("poiData", JSON.stringify(dati.data));
       addMarkersToMap();
       console.log("Dati caricati dall'API e salvati in localStorage.");
     }
