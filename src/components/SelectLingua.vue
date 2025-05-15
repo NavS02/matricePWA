@@ -14,7 +14,6 @@ async function caricaDatiPOI() {
   if (datiMemorizzati) {
     try {
       datiPOI.value = JSON.parse(datiMemorizzati);
-      console.log("Dati caricati da localStorage.");
     } catch (e) {
       console.error("Errore nel parsing dei dati da localStorage:", e);
     }
@@ -32,7 +31,6 @@ async function caricaDatiPOI() {
     datiPOI.value = filtrati;
 
     localStorage.setItem("poiData", JSON.stringify(filtrati));
-    console.log("Dati filtrati per app_ts salvati in localStorage.");
   } catch (err) {
     console.warn("Impossibile ottenere i dati dalla API. Uso dei dati nella cache se disponibili.");
     errore.value = "Impossibile caricare i dati aggiornati.";

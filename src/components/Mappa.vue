@@ -85,7 +85,6 @@ const fetchData = async () => {
     if (datiMemorizzati) {
       apiData.value = JSON.parse(datiMemorizzati);
       addMarkersToMap();
-      console.log("Dati caricati da localStorage.");
     } else {
       const risposta = await fetch(
         "https://directusmatrice.vidimus.it/items/POI?fields=*.*.*"
@@ -95,7 +94,6 @@ const fetchData = async () => {
 
       localStorage.setItem("poiData", JSON.stringify(dati.data));
       addMarkersToMap();
-      console.log("Dati caricati dall'API e salvati in localStorage.");
     }
   } catch (error) {
     console.error("Errore nel recuperare i dati dall'API:", error);

@@ -86,7 +86,6 @@ onMounted(async () => {
     if (datiMemorizzati) {
       const json = JSON.parse(datiMemorizzati);
       pois.value = (json || []).filter((item) => item.app_ts?.includes("APP"));
-      console.log("Dati caricati da localStorage.");
     } else {
       const risposta = await fetch(
         "https://directusmatrice.vidimus.it/items/POI?sort=numero&fields=*.*.*"
@@ -95,7 +94,6 @@ onMounted(async () => {
       pois.value = (json.data || []).filter((item) =>
         item.app_ts?.includes("APP")
       );
-      console.log("Dati caricati dall'API.");
     }
   } catch (error) {
     console.error("Errore nel ottenere i POI:", error);

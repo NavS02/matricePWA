@@ -52,7 +52,6 @@ onMounted(async () => {
 
     if (datiMemorizzati) {
       info.value = JSON.parse(datiMemorizzati);
-      console.log("Dati caricati da localStorage.");
     } else {
       const risposta = await fetch(
         "https://directusmatrice.vidimus.it/items/APP/1?fields=*,gallery.*.*"
@@ -61,7 +60,6 @@ onMounted(async () => {
       info.value = json.data;
 
       localStorage.setItem("infoData", JSON.stringify(json.data));
-      console.log("Dati caricati dall'API e salvati in localStorage.");
     }
   } catch (error) {
     console.error("Errore nel ottenere i POI:", error);
