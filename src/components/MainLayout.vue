@@ -2,7 +2,6 @@
 import { ref, onMounted } from "vue";
 import { useRoute, useRouter } from "vue-router";
 import { watch } from "vue";
-import { SpeedInsights } from "@vercel/speed-insights/vue"
 const route = useRoute();
 const router = useRouter();
 
@@ -232,7 +231,6 @@ function goToStoria() {
     </div>
 
     <router-view :key="viewKey" />
-    <SpeedInsights/>
   </div>
 </template>
 

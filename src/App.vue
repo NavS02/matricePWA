@@ -1,9 +1,12 @@
 <script setup>
 import HelloWorld from './components/SelectLingua.vue'
 import PWABadge from './components/PWABadge.vue'
+import { SpeedInsights } from "@vercel/speed-insights/vue"
+
 </script>
 
 <template>
+    <SpeedInsights/>
 
 <router-view/>
 <PWABadge />
