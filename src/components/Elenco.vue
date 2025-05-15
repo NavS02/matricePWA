@@ -76,8 +76,22 @@ function goToScheda(poi) {
   });
 }
 function getImageUrl(coverId) {
-  return `https://directusmatrice.vidimus.it/assets/${coverId}`;
+  const url = `https://directusmatrice.vidimus.it/assets/${coverId}`;
+  return checkImage(url).then(
+    () => url,
+    () => '/logoFioreI.svg' 
+  );
 }
+
+function checkImage(url) {
+  return new Promise((resolve, reject) => {
+    const img = new Image();
+    img.onload = () => resolve(url);
+    img.onerror = () => reject();
+    img.src = url;
+  });
+}
+
 
 onMounted(async () => {
   try {
