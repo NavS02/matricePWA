@@ -1,7 +1,7 @@
 <template>
     <div class="page-container">
       <div class="header-image">
-      <img src="/logoFiore2.svg" alt="IMAGE" class="main-image" />
+      <img src="/logoFiore2.svg" alt="IMAGE" class="main-image" onerror="this.onerror=null;this.src='/logoFioreI.svg'"/>
     </div>
   
       <div class="list-button" style="text-align:left; margin-left:20px">
