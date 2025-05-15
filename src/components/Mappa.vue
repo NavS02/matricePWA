@@ -6,7 +6,11 @@
 
     <div class="list-button" style="text-align: right; margin-right: 20px">
       <div @click="goToElenco()" class="link">
-        Visualizza l'elenco <span class="arrow">➔</span>
+{{
+          currentTranslations.visualizza_elenco || "Visualizza l'elenco"
+        }}
+
+         <span class="arrow">➔</span>
       </div>
     </div>
 
@@ -21,7 +25,7 @@
 </template>
 
 <script setup>
-import { onMounted, ref } from "vue";
+import { onMounted, ref, watch } from "vue";
 import { useRoute, useRouter } from "vue-router";
 import L from "leaflet";
 import "leaflet/dist/leaflet.css";
@@ -32,6 +36,36 @@ const apiData = ref([]);
 const currentView = ref("attuale");
 let mapInstance;
 
+const currentLanguage = ref("italiano");
+const currentTranslations = ref({});
+const loadTranslations = async () => {
+  try {
+    let data;
+    const stored = localStorage.getItem("translations");
+
+    if (stored) {
+      data = JSON.parse(stored);
+    } else {
+      const response = await fetch("/translations.json");
+      data = await response.json();
+      localStorage.setItem("translations", JSON.stringify(data));
+    }
+
+    currentLanguage.value = route.params.lingua || "italiano";
+    currentTranslations.value = data[currentLanguage.value];
+  } catch (error) {
+    console.error("Error loading translations:", error);
+  }
+};
+watch(
+  () => route.params.lingua,
+  async (newLang, oldLang) => {
+    if (newLang !== oldLang) {
+      await loadTranslations();
+    }
+  },
+  { immediate: true }
+);
 function goToElenco() {
   router.push({ name: "Elenco", params: { lingua: route.params.lingua } });
 }

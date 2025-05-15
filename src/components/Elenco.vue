@@ -7,7 +7,10 @@
       <div class="list-button" style="text-align:left; margin-left:20px">
         <div @click="goToMappa()" class="link">
           <span class="arrow">←</span>
-          Visualizza la mappa 
+          
+          {{
+          currentTranslations.visualizza_mappa || "Visualizza la mappa"
+        }}
         </div>
       </div>
   <br>
@@ -27,13 +30,43 @@
   </template>
   
   <script setup>
-  import { ref, onMounted } from "vue";
+  import { ref, onMounted,watch } from "vue";
   import { useRoute, useRouter } from "vue-router";
   
   const route = useRoute();
   const router = useRouter();
     const pois = ref([]);
   
+const currentLanguage = ref("italiano");
+const currentTranslations = ref({});
+const loadTranslations = async () => {
+  try {
+    let data;
+    const stored = localStorage.getItem("translations");
+
+    if (stored) {
+      data = JSON.parse(stored);
+    } else {
+      const response = await fetch("/translations.json");
+      data = await response.json();
+      localStorage.setItem("translations", JSON.stringify(data));
+    }
+
+    currentLanguage.value = route.params.lingua || "italiano";
+    currentTranslations.value = data[currentLanguage.value];
+  } catch (error) {
+    console.error("Error loading translations:", error);
+  }
+};
+watch(
+  () => route.params.lingua,
+  async (newLang, oldLang) => {
+    if (newLang !== oldLang) {
+      await loadTranslations();
+    }
+  },
+  { immediate: true }
+);
   function goToMappa() {
     router.push({ name: "Mappa", params: { lingua: route.params.lingua } });
 }

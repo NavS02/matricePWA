@@ -42,7 +42,10 @@
             "
           ></polyline>
         </svg>
-        Torna indietro
+             {{
+          currentTranslations.return_home || "Torna indietro"
+        }}
+        
       </button>
     </div>
 
@@ -83,11 +86,42 @@
 </template>
 
 <script setup>
-import { defineProps, computed } from "vue";
-import { useRouter } from "vue-router";
+import { defineProps, computed,watch,ref } from "vue";
+  import { useRoute, useRouter } from "vue-router";
 
-const router = useRouter();
+  const route = useRoute();
+  const router = useRouter();
 
+const currentLanguage = ref("italiano");
+const currentTranslations = ref({});
+const loadTranslations = async () => {
+  try {
+    let data;
+    const stored = localStorage.getItem("translations");
+
+    if (stored) {
+      data = JSON.parse(stored);
+    } else {
+      const response = await fetch("/translations.json");
+      data = await response.json();
+      localStorage.setItem("translations", JSON.stringify(data));
+    }
+
+    currentLanguage.value = route.params.lingua || "italiano";
+    currentTranslations.value = data[currentLanguage.value];
+  } catch (error) {
+    console.error("Error loading translations:", error);
+  }
+};
+watch(
+  () => route.params.lingua,
+  async (newLang, oldLang) => {
+    if (newLang !== oldLang) {
+      await loadTranslations();
+    }
+  },
+  { immediate: true }
+);
 const goBack = () => {
   router.back();
 };
