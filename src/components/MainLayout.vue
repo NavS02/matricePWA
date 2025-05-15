@@ -2,8 +2,7 @@
 import { ref, onMounted } from "vue";
 import { useRoute, useRouter } from "vue-router";
 import { watch } from "vue";
-import { SpeedInsights } from "@vercel/speed-insights/next"
-
+import { SpeedInsights } from "@vercel/speed-insights/vue"
 const route = useRoute();
 const router = useRouter();
 
