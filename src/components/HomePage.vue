@@ -28,11 +28,16 @@
         }}</strong>
       </div>
     </div>
-    <br />
-    <br />
-    <div style="text-align: center">
+    <br>
+    <div style="text-align: center;padding-top:20px">
       {{ currentTranslations.crediti || "CREDITI" }}
     </div>
+<div class="footer-images" >
+  <img src="/logo-fsc.png" alt="FSC Logo" style="  max-width: 40%;">
+  <img src="/a-emblema-2.png" alt="Emblema" style="  max-width: 15%;padding-left:25px">
+  <img src="/Matrice-Stemma-bg.png" alt="Stemma" style="  max-width: 15%;padding-left:25px">
+</div>
+
   </div>
 </template>
 
@@ -187,4 +192,18 @@ function selectOption(option) {
 .language {
   font-size: 16px;
 }
+.footer-images {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  box-sizing: border-box;
+  margin:30px
+}
+
+.footer-images img {
+  flex: 1;
+  height: auto;
+  object-fit: contain;
+}
+
 </style>
