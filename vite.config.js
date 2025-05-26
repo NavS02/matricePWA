@@ -44,6 +44,23 @@ export default defineConfig({
         globPatterns: ["**/*.{js,css,html,svg,png,ico}"],
         cleanupOutdatedCaches: true,
         clientsClaim: true,
+
+        runtimeCaching: [
+          {
+            urlPattern: /^https:\/\/directusmatrice\.vidimus\.it\/assets\/.*$/i,
+            handler: "CacheFirst",
+            options: {
+              cacheName: "directus-images",
+              expiration: {
+                maxEntries: 100,
+                maxAgeSeconds: 60 * 60 * 24 * 1, 
+              },
+              cacheableResponse: {
+                statuses: [0, 200],
+              },
+            },
+          },
+        ],
       },
 
       devOptions: {
