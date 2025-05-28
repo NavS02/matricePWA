@@ -56,6 +56,7 @@
       alt="Immagine principale"
       style="max-width: 400px; max-height: 400px"
     />
+<div v-if="currentLanguage === 'italiano'">
 
     <h2 class="title">{{ parsedItem?.titolo }}</h2>
 
@@ -82,6 +83,36 @@
       v-html="parsedItem?.descrizione"
       style="margin: 2%"
     ></div>
+</div>
+<div v-else>
+
+    <h2 class="title">{{ parsedItem?.titolo_ENG }}</h2>
+
+    <div
+      style="padding-bottom: 10px"
+      v-if="parsedItem?.autore_ENG || parsedItem?.data_ENG || parsedItem?.soggetto_ENG"
+    >
+      <hr />
+      <ul class="meta" style="padding-left: 10%">
+        <li v-if="parsedItem?.autore_ENG">
+          <em>{{ parsedItem?.autore_ENG }}</em>
+        </li>
+        <li v-if="parsedItem?.data_ENG">
+          <em>{{ parsedItem?.data_ENG }}</em>
+        </li>
+        <li v-if="parsedItem?.soggetto_ENG">
+          <em>{{ parsedItem?.soggetto_ENG }}</em>
+        </li>
+      </ul>
+      <hr />
+    </div>
+    <div
+      class="descrizione"
+      v-html="parsedItem?.descrizione_ENG"
+      style="margin: 2%"
+    ></div>
+</div>
+  
   </div>
 </template>
 

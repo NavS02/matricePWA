@@ -4,7 +4,6 @@
       <img src="/logoFiore2.svg" alt="IMAGE" class="main-image" style="" />
     </div>
 
-
     <!-- <h3>{{ info.titolo }}</h3> -->
     <br />
 
@@ -14,7 +13,8 @@
           v-for="(item, index) in info.gallery"
           :key="index"
           :src="
-            'https://directusmatrice.vidimus.it/assets/' + item.directus_files_id.id
+            'https://directusmatrice.vidimus.it/assets/' +
+            item.directus_files_id.id
           "
           :alt="item.directus_files_id.title || 'Immagine galleria'"
           class="gallery-image"
@@ -31,8 +31,20 @@
         ></span>
       </div>
     </div>
-    <p v-html="info.introduzione" style="text-align: justify;font-size:20px"></p>
-    <p v-html="info.storia" style="text-align: justify"></p>
+    <div v-if="currentLanguage === 'italiano'">
+      <p
+        v-html="info.introduzione"
+        style="text-align: justify; font-size: 20px"
+      ></p>
+      <p v-html="info.storia" style="text-align: justify"></p>
+    </div>
+    <div v-if="currentLanguage === 'english'">
+       <p
+        v-html="info.introduzione_eng"
+        style="text-align: justify; font-size: 20px"
+      ></p>
+      <p v-html="info.storia_eng" style="text-align: justify"></p>
+    </div>
   </div>
 </template>
 
@@ -45,7 +57,7 @@ const router = useRouter();
 const info = ref();
 const currentIndex = ref(0);
 const scrollContainer = ref(null);
-
+const currentLanguage = ref( route.params.lingua);
 onMounted(async () => {
   try {
     const datiMemorizzati = localStorage.getItem("infoData");
@@ -65,7 +77,6 @@ onMounted(async () => {
     console.error("Errore nel ottenere i POI:", error);
   }
 });
-
 
 const scrollToIndex = (index) => {
   currentIndex.value = index;
@@ -118,7 +129,7 @@ const onScroll = () => {
   flex: 0 0 100%;
   width: 100%;
   height: 300px;
-  object-fit:cover;
+  object-fit: cover;
   border-radius: 8px;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
 }

@@ -20,7 +20,13 @@
         :style="{ backgroundImage: 'url(' + getImageUrl(poi.cover?.id) + ')' }"
         @click="goToScheda(poi)"
       >
-        <div class="poi-title">{{ poi.titolo }}</div>
+      <div v-if="currentLanguage === 'italiano'">
+                <div class="poi-title">{{ poi.titolo }}</div>
+
+      </div>
+      <div v-else>
+                <div class="poi-title">{{ poi.titolo_ENG }}</div>
+      </div>
       </div>
       <br />
     </div>

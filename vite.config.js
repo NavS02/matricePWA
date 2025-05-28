@@ -53,7 +53,7 @@ export default defineConfig({
               cacheName: "directus-images",
               expiration: {
                 maxEntries: 100,
-                maxAgeSeconds: 60 * 60 * 24 * 1, 
+                maxAgeSeconds: 60 * 60 * 24 * 1, // 1 giorno
               },
               cacheableResponse: {
                 statuses: [0, 200],

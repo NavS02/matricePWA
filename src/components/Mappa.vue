@@ -289,7 +289,12 @@ const addMarkersToMap = () => {
       const marker = L.marker([lat, lng], {
         icon: customIcon,
       }).addTo(mapInstance);
-      marker.bindPopup(`<b>${poi?.titolo}</b><br>`);
+      if(currentLanguage.value=== "italiano") {
+        marker.bindPopup(`<b>${poi.titolo}</b><br>`);
+      } else {
+      marker.bindPopup(`<b>${poi.titolo_ENG}</b><br>`);
+
+      }
     }
   });
 
