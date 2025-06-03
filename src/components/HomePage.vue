@@ -155,7 +155,7 @@ function selectOption(option) {
   background-size: 4000px;
   background-position-x: -900px;
   background-position-y: -900px;
-    padding-bottom: 40px; 
+    padding-bottom: 60px; 
 
 }
 
