@@ -157,10 +157,7 @@ function selectOption(option) {
   background-position-x: -900px;
   background-position-y: -900px;
 }
-.container {
-  height: 100vh;
-  height: 100dvh;
-}
+
 
 
 .footer-images {
