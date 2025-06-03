@@ -3,43 +3,41 @@
     <img src="/logoFiore2.svg" alt="IMAGE" class="main-image" />
 
     <div class="cards-wrapper">
-      <div class="card1" @click="selectOption('storia')" style="">
-        <strong class="language">{{
-          currentTranslations.storia || "STORIA"
-        }}</strong>
+      <div class="card1" @click="selectOption('storia')">
+        <div class="icon"></div>
+        <strong class="language">{{ currentTranslations.storia || "STORIA" }}</strong>
       </div>
 
       <div class="card2" @click="selectOption('mappa')">
-        <strong class="language">{{
-          currentTranslations.mappa || "MAPPA"
-        }}</strong>
+        <div class="icon"></div>
+        <strong class="language">{{ currentTranslations.mappa || "MAPPA" }}</strong>
       </div>
     </div>
+
     <div class="cards-wrapper">
-      <div class="card" @click="selectOption('lista')">
-        <strong class="language">{{
-          currentTranslations.lista_opere || "LISTA OPERE"
-        }}</strong>
+      <div class="card3" @click="selectOption('lista')">
+        <div class="icon"></div>
+        <strong class="language">{{ currentTranslations.lista_opere || "LISTA OPERE" }}</strong>
       </div>
 
-      <div class="card" @click="selectOption('contatti')">
-        <strong class="language">{{
-          currentTranslations.informazione || "INFORMAZIONE"
-        }}</strong>
+      <div class="card4" @click="selectOption('contatti')">
+        <div class="icon"></div>
+        <strong class="language">{{ currentTranslations.informazione || "INFORMAZIONE" }}</strong>
       </div>
     </div>
-    <br>
-    <div style="text-align: center;padding-top:20px">
+
+    <br />
+    <div style="text-align: center; padding-top: 20px">
       {{ currentTranslations.crediti || "CREDITI" }}
     </div>
-<div class="footer-images" >
-  <img src="/logo-fsc.png" alt="FSC Logo" style="  max-width: 40%;">
-  <img src="/a-emblema-2.png" alt="Emblema" style="  max-width: 15%;padding-left:25px">
-  <img src="/Matrice-Stemma-bg.png" alt="Stemma" style="  max-width: 15%;padding-left:25px">
-</div>
-
+    <div class="footer-images">
+      <img src="/logo-fsc.png" alt="FSC Logo" style="max-width: 40%" />
+      <img src="/a-emblema-2.png" alt="Emblema" style="max-width: 15%; padding-left: 25px" />
+      <img src="/Matrice-Stemma-bg.png" alt="Stemma" style="max-width: 15%; padding-left: 25px" />
+    </div>
   </div>
 </template>
+
 
 <script setup>
 import { onMounted, ref, watch } from "vue";
@@ -141,63 +139,67 @@ function selectOption(option) {
   margin-top: 30px;
 }
 
-.card {
-  background-color: #f5f5f5;
-  padding: 30px 20px;
-  width: 118px;
-  height: 92px;
-  border-radius: 10px;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+.card1, .card2, .card3, .card4 {
+  width: 140px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  color: black;
+  cursor: pointer;
 }
-.card1 {
-  background-color: #f5f5f5;
-  padding: 30px 20px;
+
+.card1 .icon, .card2 .icon, .card3 .icon, .card4 .icon {
   width: 118px;
   height: 92px;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 60%;
   border-radius: 10px;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  color: black;
-  background-image: url("data:image/svg+xml,%3Csvg%20height%3D%22800px%22%20width%3D%22800px%22%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%20512%20512%22%3E%3Cstyle%3E.st0%7Bfill%3A%23000000%3Bopacity%3A0.3%7D%3C/style%3E%3Cg%3E%3Cpath%20class%3D%22st0%22%20d%3D%22M390.305%2C235.134H237.759v-12.689l-93.676-107.348V72.594h35.682V33.46h-35.682V0h-39.142v33.46H69.26v39.134h35.681v42.518L11.265%2C222.444V512h93.782v-88.388c0.03-10.748%2C8.732-19.45%2C19.473-19.465c10.741%2C0.015%2C19.442%2C8.717%2C19.457%2C19.465V512h71.575h16.028h6.178h149.737h113.239V361.667L390.305%2C235.134z%20M225.387%2C287.939v211.682h-9.835h-59.203v-76.009c0-17.584-14.246-31.837-31.829-31.837c-17.584%2C0-31.845%2C14.253-31.845%2C31.837v76.009H23.637V227.09l93.676-107.34V60.214H81.632V45.833l35.681%2C0.008V12.372h14.397V45.84h35.682v14.374h-35.682v59.528l93.676%2C107.348v20.417h159.299L480.93%2C357.8H237.759v-69.86H225.387z%20M488.362%2C499.621H387.495H237.759V370.18h250.604V499.621z%22/%3E%3Cpath%20class%3D%22st0%22%20d%3D%22M349.351%2C460.676v-52.601h-51.045v58.787h51.045V460.676z%20M336.979%2C454.482h-26.3v-34.035h26.3V454.482z%22/%3E%3Cpath%20class%3D%22st0%22%20d%3D%22M430.564%2C460.676v-52.601h-51.045v58.787h51.045V460.676z%20M418.192%2C454.482h-26.301v-34.035h26.301V454.482z%22/%3E%3Cpath%20class%3D%22st0%22%20d%3D%22M97.493%2C305.274h54.913v-6.186v-48.726H97.493V305.274z%20M109.867%2C262.734h30.167v30.168h-30.167V262.734z%22/%3E%3C/g%3E%3C/svg%3E");
-  background-size: cover;
-}
-.card2 {
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
   background-color: #f5f5f5;
-  padding: 30px 20px;
-  width: 118px;
-  height: 92px;
-  border-radius: 10px;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  color: black;
-  background-image: url("data:image/svg+xml,%3Csvg%20width%3D%22800px%22%20height%3D%22800px%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20opacity%3D%220.3%22%3E%3Cg%20id%3D%22SVGRepo_bgCarrier%22%20stroke-width%3D%220%22/%3E%3Cg%20id%3D%22SVGRepo_tracerCarrier%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22/%3E%3Cg%20id%3D%22SVGRepo_iconCarrier%22%3E%3Cpath%20d%3D%22M3%208.70938C3%207.23584%203%206.49907%203.39264%206.06935C3.53204%205.91678%203.70147%205.79466%203.89029%205.71066C4.42213%205.47406%205.12109%205.70705%206.51901%206.17302C7.58626%206.52877%208.11989%206.70665%208.6591%206.68823C8.85714%206.68147%209.05401%206.65511%209.24685%206.60952C9.77191%206.48541%2010.2399%206.1734%2011.176%205.54937L12.5583%204.62778C13.7574%203.82843%2014.3569%203.42876%2015.0451%203.3366C15.7333%203.24444%2016.4168%203.47229%2017.7839%203.92799L18.9487%204.31624C19.9387%204.64625%2020.4337%204.81126%2020.7169%205.20409C21%205.59692%2021%206.11871%2021%207.16229V15.2907C21%2016.7642%2021%2017.501%2020.6074%2017.9307C20.468%2018.0833%2020.2985%2018.2054%2020.1097%2018.2894C19.5779%2018.526%2018.8789%2018.293%2017.481%2017.827C16.4137%2017.4713%2015.8801%2017.2934%2015.3409%2017.3118C15.1429%2017.3186%2014.946%2017.3449%2014.7532%2017.3905C14.2281%2017.5146%2013.7601%2017.8266%2012.824%2018.4507L11.4417%2019.3722C10.2426%2020.1716%209.64311%2020.5713%208.95493%2020.6634C8.26674%2020.7556%207.58319%2020.5277%206.21609%2020.072L5.05132%2019.6838C4.06129%2019.3538%203.56627%2019.1888%203.28314%2018.7959C3%2018.4031%203%2017.8813%203%2016.8377V8.70938Z%22%20stroke%3D%22%231C274C%22%20stroke-width%3D%220.408%22/%3E%3Cpath%20opacity%3D%220.5%22%20d%3D%22M9%206.63867V20.5%22%20stroke%3D%22%231C274C%22%20stroke-width%3D%220.408%22/%3E%3Cpath%20opacity%3D%220.5%22%20d%3D%22M15%203V17%22%20stroke%3D%22%231C274C%22%20stroke-width%3D%220.408%22/%3E%3C/g%3E%3C/svg%3E");
-  background-size: cover;
 }
+
+
+.card1 .icon {
+  background-image: url("data:image/svg+xml,%3Csvg width='20px' height='20px' viewBox='0 0 24 24' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M12.0002 8L8.79795 9.5611C8.14576 9.87904 7.81967 10.038 7.58124 10.278C7.37041 10.4903 7.20988 10.7471 7.11148 11.0297C7.0002 11.3492 7.0002 11.7119 7.0002 12.4375V21H17.0002V12.4375C17.0002 11.7119 17.0002 11.3492 16.8889 11.0297C16.7905 10.7471 16.63 10.4903 16.4192 10.278C16.1807 10.038 15.8546 9.87904 15.2024 9.5611L12.0002 8ZM12.0002 8V3M14.0002 5H10.0002M7.0002 13L4.76897 14.1156C4.12683 14.4366 3.80576 14.5971 3.57118 14.8366C3.36374 15.0484 3.20598 15.3037 3.10931 15.5839C3 15.9009 3 16.2598 3 16.9778V21H21V16.9777C21 16.2598 21 15.9008 20.8907 15.5839C20.794 15.3037 20.6363 15.0484 20.4289 14.8366C20.1943 14.5971 19.8732 14.4366 19.2311 14.1155L17.0002 13M14.0002 21V17C14.0002 15.8954 13.1048 15 12.0002 15C10.8956 15 10.0002 15.8954 10.0002 17V21H14.0002Z' stroke='%23b57171' stroke-opacity='0.5' stroke-width='0.48' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+}
+
+.card2 .icon {
+  background-image: url("data:image/svg+xml,%3Csvg width='20px' height='20px' viewBox='0 0 24 24' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M12 6H12.01M9 20L3 17V4L5 5M9 20L15 17M9 20V14M15 17L21 20V7L19 6M15 17V14M15 6.2C15 7.96731 13.5 9.4 12 11C10.5 9.4 9 7.96731 9 6.2C9 4.43269 10.3431 3 12 3C13.6569 3 15 4.43269 15 6.2Z' stroke='%23b57171' stroke-opacity='0.5' stroke-width='0.48' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+}
+
+.card3 .icon {
+  background-image: url("data:image/svg+xml,%3Csvg width='40px' height='40px' viewBox='-2.4 0 39.9 39.9' xmlns='http://www.w3.org/2000/svg' fill='none'%3E%3Cg id='Group_57' data-name='Group 57' transform='translate(-223 -130.1)'%3E%3Cpath d='M251,144v25m-21,0V144m7,2v23m7-23v23m-16,0h25' fill='none' stroke='%23b57171' stroke-linecap='round' stroke-linejoin='round' stroke-width='0.798' stroke-opacity='0.5'/%3E%3Cpath d='M227.5,138.1a2.689,2.689,0,0,1,2.7-2.7,3.372,3.372,0,0,1,3.4,3.4,4.268,4.268,0,0,1-4.3,4.3,5.335,5.335,0,0,1-5.3-5.3,6.7,6.7,0,0,1,6.7-6.7h19.7a6.7,6.7,0,0,1,6.7,6.7,5.335,5.335,0,0,1-5.3,5.3,4.268,4.268,0,0,1-4.3-4.3,3.372,3.372,0,0,1,3.4-3.4,2.689,2.689,0,0,1,2.7,2.7' fill='none' stroke='%23b57171' stroke-linecap='round' stroke-linejoin='round' stroke-width='0.798' stroke-opacity='0.5'/%3E%3Cpath d='M234,139h13' fill='none' stroke='%23b57171' stroke-linecap='square' stroke-width='0.798' stroke-opacity='0.5'/%3E%3C/g%3E%3C/svg%3E");
+}
+
+.card4 .icon {
+  background-image: url("data:image/svg+xml,%3Csvg width='40px' height='40px' viewBox='0 0 24 24' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='12' cy='12' r='10' stroke='%23b57171' stroke-width='0.48' stroke-opacity='0.5'/%3E%3Cpath d='M12 17V11' stroke='%23b57171' stroke-width='0.48' stroke-linecap='round' stroke-opacity='0.5'/%3E%3Ccircle cx='1' cy='1' r='1' transform='matrix(1 0 0 -1 11 9)' fill='%23b57171' fill-opacity='0.5'/%3E%3C/svg%3E");
+}
+
+.language {
+  font-size: 18px !important;
+  color: #b57171;
+  margin-top: 8px; /* espacio entre icono y texto */
+  text-align: center;
+}
+
+
 .flag {
   width: 46px;
   margin-bottom: 10px;
 }
 
 .language {
-  font-size: 16px;
+  font-size: 18px !important;
+  color: #b57171;
+  margin-top: 8px;
+  text-align: center;
 }
 .footer-images {
   display: flex;
   align-items: center;
   width: 100%;
   box-sizing: border-box;
-  margin:30px
+  margin: 30px;
 }
 
 .footer-images img {
@@ -205,5 +207,4 @@ function selectOption(option) {
   height: auto;
   object-fit: contain;
 }
-
 </style>
