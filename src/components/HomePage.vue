@@ -1,49 +1,174 @@
 <template>
   <div class="container">
-        <div class="content">
+    <div class="content">
+      <img src="/logoFiore2.svg" alt="IMAGE" class="main-image" />
+      <div class="install-button" @click="showInstallTutorial()">
+        <svg
+          width="25px"
+          height="25px"
+          viewBox="0 0 24 24"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <g id="SVGRepo_bgCarrier" stroke-width="0" />
 
-    <img src="/logoFiore2.svg" alt="IMAGE" class="main-image" />
+          <g
+            id="SVGRepo_tracerCarrier"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          />
 
-    <div class="cards-wrapper">
-      <div class="card1" @click="selectOption('storia')">
-        <div class="icon"></div>
-        <strong class="language">{{
-          currentTranslations.storia || "STORIA"
-        }}</strong>
+          <g id="SVGRepo_iconCarrier">
+            <circle
+              cx="12"
+              cy="12"
+              r="10"
+              stroke="white"
+              stroke-width="1"
+            />
+            <path
+              d="M12 17V11"
+              stroke="white"
+              stroke-width="1"
+              stroke-linecap="round"
+            />
+            <circle
+              cx="1"
+              cy="1"
+              r="1"
+              transform="matrix(1 0 0 -1 11 9)"
+              fill="white"
+            />
+          </g>
+        </svg>
       </div>
-
-      <div class="card2" @click="selectOption('mappa')">
-        <div class="icon"></div>
-        <strong class="language">{{
-          currentTranslations.mappa || "MAPPA"
-        }}</strong>
-      </div>
-    </div>
-
-    <div class="cards-wrapper">
-      <div class="card3" @click="selectOption('lista')">
-        <div class="icon"></div>
-        <strong class="language">{{
-          currentTranslations.lista_opere || "LISTA OPERE"
-        }}</strong>
-      </div>
-
-      <div class="card4" @click="selectOption('informazione')">
-        <div class="icon"></div>
-        <strong class="language">{{
-          currentTranslations.informazione || "INFORMAZIONE"
-        }}</strong>
-      </div>
-    </div>
-
-    <br />
-    <div
-      style="text-align: center; padding-top: 20px"
-      @click="selectOption('crediti')"
-    >
-      {{ currentTranslations.crediti || "CREDITI" }}
-    </div>
+      <br>
+      <div class="modal" v-if="isModalVisible" tabindex="-1">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title">Installazione</h5>
+              <button
+                type="button"
+                class="btn-close"
+                @click="closeModal"
+              ></button>
+            </div>
+            <div class="modal-body">
+              <h1>Seleziona il dispositivo utilizzato:</h1>
+              <div class="row">
+                <div class="col-6">
+                  <button
+                    class="btn btn-primary btn-lg btn-block OS"
+                    style="background-color: #00458d;border-color:transparent  !important"
+                    @click="selectOS('ios')"
+                  >
+                    <i class="bi bi-apple"></i> IOS
+                  </button>
+                </div>
+                <div class="col-6">
+                  <button
+                    class="btn btn-primary btn-lg btn-block OS"
+                    style="background-color: #00458d ;border-color:transparent  !important"
+                    @click="selectOS('android')"
+                  >
+                    <i class="bi bi-android"></i> Android
+                  </button>
+                </div>
+              </div>
+              <div class="installationguide" v-if="OS == 'ios'">
+                <h1>IOS</h1>
+                <ol type="1">
+                  <li>Accedi su <strong>Safari</strong></li>
+                  <li>
+                    Clicca sul pulsante di condivisione che trovi su Safari
+                  </li>
+                  <li>
+                    Clicca su <strong>"Aggiungi alla schermata Home"</strong>
+                  </li>
+                  <li>
+                    Verifica che il nome visualizzato vada bene. In caso
+                    contrario modificalo e clicca su
+                    <strong>"Aggiungi"</strong>.
+                  </li>
+                </ol>
+              </div>
+              <div class="installationguide" v-if="OS == 'android'">
+                <h1>Android</h1>
+                <ol type="1">
+                  <li>
+                    Cerca l'icona
+                    <strong>"Aggiungi a schermata principale" </strong>
+                  </li>
+                  <li>Clicca su <strong>"Aggiungi"</strong></li>
+                  <li>Personalizza il Nome (opzionale)</li>
+                  <li>Accedi all'App</li>
+                </ol>
+              </div>
+            </div>
+            <div
+              class="modal-footer"
+              style="
+                display: flex;
+                justify-content: space-between;
+                align-items: flex-end;
+              "
+            >
+              <!-- <div style="text-align: left !important">
+                Versione 1.0 ({{ online ? "online" : "offline" }})
+              </div> -->
+              <button
+                type="button"
+                class="btn btn-secondary"
+                @click="closeModal"
+                style="border-color:transparent  !important"
+              >
+                Chiudi
+              </button>
+            </div>
+          </div>
         </div>
+      </div>
+      <div class="cards-wrapper">
+        <div class="card1" @click="selectOption('storia')">
+          <div class="icon"></div>
+          <strong class="language">{{
+            currentTranslations.storia || "STORIA"
+          }}</strong>
+        </div>
+
+        <div class="card2" @click="selectOption('mappa')">
+          <div class="icon"></div>
+          <strong class="language">{{
+            currentTranslations.mappa || "MAPPA"
+          }}</strong>
+        </div>
+      </div>
+
+      <div class="cards-wrapper">
+        <div class="card3" @click="selectOption('lista')">
+          <div class="icon"></div>
+          <strong class="language">{{
+            currentTranslations.lista_opere || "LISTA OPERE"
+          }}</strong>
+        </div>
+
+        <div class="card4" @click="selectOption('informazione')">
+          <div class="icon"></div>
+          <strong class="language">{{
+            currentTranslations.informazione || "INFORMAZIONE"
+          }}</strong>
+        </div>
+      </div>
+
+      <br />
+      <div
+        style="text-align: center; padding-top: 20px"
+        @click="selectOption('crediti')"
+      >
+        {{ currentTranslations.crediti || "CREDITI" }}
+      </div>
+    </div>
     <div class="footer-images">
       <img src="/logo-fsc.png" alt="FSC Logo" style="max-width: 40%" />
       <img
@@ -58,6 +183,8 @@
       />
     </div>
   </div>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4Q6Gf2aSP4eDXB8Miphtr37CMZZQ5oXLH2yaXMJ2w8e2ZtHTl7GptT4jmndRuHDT" crossorigin="anonymous">
+
 </template>
 
 <script setup>
@@ -69,6 +196,19 @@ const router = useRouter();
 const currentLanguage = ref("italiano");
 const currentTranslations = ref({});
 let hasLoadedTranslations = false;
+const isModalVisible = ref(false);
+const OS = ref();
+function selectOS(selection) {
+  OS.value = selection;
+}
+function showInstallTutorial() {
+  isModalVisible.value = true;
+}
+
+function closeModal() {
+  isModalVisible.value = false;
+  OS.value = null;
+}
 
 const loadTranslations = async () => {
   try {
@@ -131,7 +271,7 @@ function selectOption(option) {
         params: { lingua: route.params.lingua },
       });
       break;
-       case "crediti":
+    case "crediti":
       router.push({
         name: "Crediti",
         params: { lingua: route.params.lingua },
@@ -142,6 +282,38 @@ function selectOption(option) {
 </script>
 
 <style scoped>
+.OS {
+  font-size: 16px;
+  margin-bottom: 10px;
+}
+.modal {
+  display: block;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.modal-dialog {
+  margin-top: 10%;
+}
+
+.install-button {
+  position: absolute;
+  top: 101px;
+  right: 20px;
+  font-size: 18px;
+  background-color: #b57171;
+  color: white;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+  padding:5px;
+
+}
 .container {
   display: flex;
   flex-direction: column;
@@ -155,8 +327,7 @@ function selectOption(option) {
   background-size: 4000px;
   background-position-x: -900px;
   background-position-y: -900px;
-    padding-bottom: 60px; 
-
+  padding-bottom: 60px;
 }
 
 .footer-images {
@@ -165,9 +336,7 @@ function selectOption(option) {
   align-items: center;
   gap: 25px;
   margin-top: 40px;
-  padding: 20px;
 }
-
 
 .main-image {
   width: 400px;
@@ -202,7 +371,7 @@ function selectOption(option) {
 .card2 .icon,
 .card3 .icon,
 .card4 .icon {
-  width: 118px;
+  width: 100%;
   height: 92px;
   background-repeat: no-repeat;
   background-position: center;
@@ -231,7 +400,7 @@ function selectOption(option) {
 .language {
   font-size: 18px !important;
   color: #b57171;
-  margin-top: 8px; 
+  margin-top: 8px;
   text-align: center;
 }
 
@@ -246,5 +415,4 @@ function selectOption(option) {
   margin-top: 8px;
   text-align: center;
 }
-
 </style>
