@@ -170,18 +170,11 @@
       </div>
     </div>
     <div class="footer-images">
-      <img src="/logo-fsc.png" alt="FSC Logo" style="max-width: 40%" />
-      <img
-        src="/a-emblema-2.png"
-        alt="Emblema"
-        style="max-width: 15%; padding-left: 25px"
-      />
-      <img
-        src="/Matrice-Stemma-bg.png"
-        alt="Stemma"
-        style="max-width: 15%; padding-left: 25px"
-      />
-    </div>
+  <img src="/logo-fsc.png" alt="FSC Logo" style="width: 50%;" />
+  <img src="/a-emblema-2.png" alt="Emblema" style="width: 20%; padding-left: 25px" />
+  <img src="/Matrice-Stemma-bg.png" alt="Stemma" style="width: 20%; padding-left: 25px" />
+</div>
+
   </div>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4Q6Gf2aSP4eDXB8Miphtr37CMZZQ5oXLH2yaXMJ2w8e2ZtHTl7GptT4jmndRuHDT" crossorigin="anonymous">
 
@@ -336,6 +329,7 @@ function selectOption(option) {
   align-items: center;
   gap: 25px;
   margin-top: 40px;
+  padding: 10px;
 }
 
 .main-image {
