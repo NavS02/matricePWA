@@ -4,46 +4,19 @@
       <img src="/logoFiore2.svg" alt="IMAGE" class="main-image" style="" />
     </div>
 
-    <!-- <h3>{{ info.titolo }}</h3> -->
-    <br />
-
-    <div v-if="info.gallery?.length" class="gallery">
-      <div ref="scrollContainer" class="gallery-scroll" @scroll="onScroll">
-        <img
-          v-for="(item, index) in info.gallery"
-          :key="index"
-          :src="
-            'https://directusmatrice.vidimus.it/assets/' +
-            item.directus_files_id.id
-          "
-          :alt="item.directus_files_id.title || 'Immagine galleria'"
-          class="gallery-image"
-        />
-      </div>
-
-      <div class="dots">
-        <span
-          v-for="(item, index) in info.gallery"
-          :key="index"
-          class="dot"
-          :class="{ active: index === currentIndex }"
-          @click="scrollToIndex(index)"
-        ></span>
-      </div>
-    </div>
     <div v-if="currentLanguage === 'italiano'">
       <p
-        v-html="info.introduzione"
+        v-html="info.contatti"
         style="text-align: justify; font-size: 20px"
       ></p>
-      <p v-html="info.storia" style="text-align: justify"></p>
+      <p v-html="info.orario" style="text-align: justify"></p>
     </div>
     <div v-if="currentLanguage === 'english'">
        <p
-        v-html="info.introduzione_eng"
+        v-html="info.contatti_eng"
         style="text-align: justify; font-size: 20px"
       ></p>
-      <p v-html="info.storia_eng" style="text-align: justify"></p>
+      <p v-html="info.orario_eng" style="text-align: justify"></p>
     </div>
   </div>
 </template>
@@ -90,15 +63,7 @@ const scrollToIndex = (index) => {
   }
 };
 
-const onScroll = () => {
-  const container = scrollContainer.value;
-  if (container) {
-    const scrollLeft = container.scrollLeft;
-    const width = container.offsetWidth;
-    const index = Math.round(scrollLeft / width);
-    currentIndex.value = index;
-  }
-};
+
 </script>
 
 <style scoped>
@@ -112,47 +77,4 @@ const onScroll = () => {
   padding: 6%;
 }
 
-.gallery-scroll {
-  display: flex;
-  overflow-x: scroll;
-  scroll-snap-type: x mandatory;
-  scroll-behavior: smooth;
-  width: 100%;
-}
-
-.gallery-scroll::-webkit-scrollbar {
-  display: none;
-}
-
-.gallery-image {
-  scroll-snap-align: center;
-  flex: 0 0 100%;
-  width: 100%;
-  height: 300px;
-  object-fit: cover;
-  border-radius: 8px;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
-}
-
-/* Dots de navegación */
-.dots {
-  display: flex;
-  justify-content: center;
-  margin-top: 1rem;
-}
-
-.dot {
-  height: 12px;
-  width: 12px;
-  margin: 0 5px;
-  background-color: #bbb;
-  border-radius: 50%;
-  display: inline-block;
-  transition: background-color 0.3s;
-  cursor: pointer;
-}
-
-.dot.active {
-  background-color: #333;
-}
 </style>

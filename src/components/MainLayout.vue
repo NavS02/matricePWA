@@ -84,7 +84,13 @@ function goToMap() {
   router.push({ name: "Mappa", params: { lingua: currentLanguage.value } });
   toggleSidebar();
 }
-
+function goToInformazione() {
+  router.push({ name: "Informazione", params: { lingua: currentLanguage.value } });
+  toggleSidebar();
+}function goToCredits() {
+  router.push({ name: "Crediti", params: { lingua: currentLanguage.value } });
+  toggleSidebar();
+}
 function goToStoria() {
   router.push({
     name: "Informazione",
@@ -224,8 +230,8 @@ function goToStoria() {
           <li @click="goToHomePage()">{{ currentTranslations.torna_home }}</li>
           <li @click="goToMap()">{{ currentTranslations.mappa }}</li>
           <li @click="goToStoria()">{{ currentTranslations.storia }}</li>
-          <li>{{ currentTranslations.informazione }}</li>
-          <li>{{ currentTranslations.crediti }}</li>
+          <li @click="goToInformazione()">  {{ currentTranslations.informazione }}</li>
+          <li @click="goToCredits()">{{ currentTranslations.crediti }}</li>
         </ul>
       </div>
     </div>

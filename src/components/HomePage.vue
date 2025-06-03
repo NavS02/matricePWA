@@ -5,39 +5,57 @@
     <div class="cards-wrapper">
       <div class="card1" @click="selectOption('storia')">
         <div class="icon"></div>
-        <strong class="language">{{ currentTranslations.storia || "STORIA" }}</strong>
+        <strong class="language">{{
+          currentTranslations.storia || "STORIA"
+        }}</strong>
       </div>
 
       <div class="card2" @click="selectOption('mappa')">
         <div class="icon"></div>
-        <strong class="language">{{ currentTranslations.mappa || "MAPPA" }}</strong>
+        <strong class="language">{{
+          currentTranslations.mappa || "MAPPA"
+        }}</strong>
       </div>
     </div>
 
     <div class="cards-wrapper">
       <div class="card3" @click="selectOption('lista')">
         <div class="icon"></div>
-        <strong class="language">{{ currentTranslations.lista_opere || "LISTA OPERE" }}</strong>
+        <strong class="language">{{
+          currentTranslations.lista_opere || "LISTA OPERE"
+        }}</strong>
       </div>
 
-      <div class="card4" @click="selectOption('contatti')">
+      <div class="card4" @click="selectOption('informazione')">
         <div class="icon"></div>
-        <strong class="language">{{ currentTranslations.informazione || "INFORMAZIONE" }}</strong>
+        <strong class="language">{{
+          currentTranslations.informazione || "INFORMAZIONE"
+        }}</strong>
       </div>
     </div>
 
     <br />
-    <div style="text-align: center; padding-top: 20px">
+    <div
+      style="text-align: center; padding-top: 20px"
+      @click="selectOption('crediti')"
+    >
       {{ currentTranslations.crediti || "CREDITI" }}
     </div>
     <div class="footer-images">
       <img src="/logo-fsc.png" alt="FSC Logo" style="max-width: 40%" />
-      <img src="/a-emblema-2.png" alt="Emblema" style="max-width: 15%; padding-left: 25px" />
-      <img src="/Matrice-Stemma-bg.png" alt="Stemma" style="max-width: 15%; padding-left: 25px" />
+      <img
+        src="/a-emblema-2.png"
+        alt="Emblema"
+        style="max-width: 15%; padding-left: 25px"
+      />
+      <img
+        src="/Matrice-Stemma-bg.png"
+        alt="Stemma"
+        style="max-width: 15%; padding-left: 25px"
+      />
     </div>
   </div>
 </template>
-
 
 <script setup>
 import { onMounted, ref, watch } from "vue";
@@ -97,12 +115,24 @@ function selectOption(option) {
       break;
     case "storia":
       router.push({
-        name: "Informazione",
+        name: "Storia",
         params: { lingua: route.params.lingua },
       });
       break;
     case "lista":
       router.push({ name: "Elenco", params: { lingua: route.params.lingua } });
+      break;
+    case "informazione":
+      router.push({
+        name: "Informazione",
+        params: { lingua: route.params.lingua },
+      });
+      break;
+       case "crediti":
+      router.push({
+        name: "Crediti",
+        params: { lingua: route.params.lingua },
+      });
       break;
   }
 }
@@ -139,7 +169,10 @@ function selectOption(option) {
   margin-top: 30px;
 }
 
-.card1, .card2, .card3, .card4 {
+.card1,
+.card2,
+.card3,
+.card4 {
   width: 140px;
   display: flex;
   flex-direction: column;
@@ -147,17 +180,19 @@ function selectOption(option) {
   cursor: pointer;
 }
 
-.card1 .icon, .card2 .icon, .card3 .icon, .card4 .icon {
+.card1 .icon,
+.card2 .icon,
+.card3 .icon,
+.card4 .icon {
   width: 118px;
   height: 92px;
   background-repeat: no-repeat;
   background-position: center;
   background-size: 60%;
   border-radius: 10px;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
   background-color: #f5f5f5;
 }
-
 
 .card1 .icon {
   background-image: url("data:image/svg+xml,%3Csvg width='20px' height='20px' viewBox='0 0 24 24' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M12.0002 8L8.79795 9.5611C8.14576 9.87904 7.81967 10.038 7.58124 10.278C7.37041 10.4903 7.20988 10.7471 7.11148 11.0297C7.0002 11.3492 7.0002 11.7119 7.0002 12.4375V21H17.0002V12.4375C17.0002 11.7119 17.0002 11.3492 16.8889 11.0297C16.7905 10.7471 16.63 10.4903 16.4192 10.278C16.1807 10.038 15.8546 9.87904 15.2024 9.5611L12.0002 8ZM12.0002 8V3M14.0002 5H10.0002M7.0002 13L4.76897 14.1156C4.12683 14.4366 3.80576 14.5971 3.57118 14.8366C3.36374 15.0484 3.20598 15.3037 3.10931 15.5839C3 15.9009 3 16.2598 3 16.9778V21H21V16.9777C21 16.2598 21 15.9008 20.8907 15.5839C20.794 15.3037 20.6363 15.0484 20.4289 14.8366C20.1943 14.5971 19.8732 14.4366 19.2311 14.1155L17.0002 13M14.0002 21V17C14.0002 15.8954 13.1048 15 12.0002 15C10.8956 15 10.0002 15.8954 10.0002 17V21H14.0002Z' stroke='%23b57171' stroke-opacity='0.5' stroke-width='0.48' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
@@ -181,7 +216,6 @@ function selectOption(option) {
   margin-top: 8px; /* espacio entre icono y texto */
   text-align: center;
 }
-
 
 .flag {
   width: 46px;
