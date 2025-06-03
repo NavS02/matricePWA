@@ -146,7 +146,8 @@ function selectOption(option) {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  min-height: 100vh;
+  
+  min-height: 100dvh ;
   text-align: center;
   box-sizing: border-box;
   background-image: url("/Mediamodifier-Design.svg");
@@ -156,6 +157,11 @@ function selectOption(option) {
   background-position-x: -900px;
   background-position-y: -900px;
 }
+.container {
+  height: 100vh;
+  height: 100dvh;
+}
+
 
 .footer-images {
   display: flex;
