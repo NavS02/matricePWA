@@ -1,5 +1,7 @@
 <template>
   <div class="container">
+        <div class="content">
+
     <img src="/logoFiore2.svg" alt="IMAGE" class="main-image" />
 
     <div class="cards-wrapper">
@@ -41,6 +43,7 @@
     >
       {{ currentTranslations.crediti || "CREDITI" }}
     </div>
+        </div>
     <div class="footer-images">
       <img src="/logo-fsc.png" alt="FSC Logo" style="max-width: 40%" />
       <img
@@ -140,8 +143,11 @@ function selectOption(option) {
 
 <style scoped>
 .container {
-  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   min-height: 100vh;
+  text-align: center;
   box-sizing: border-box;
   background-image: url("/Mediamodifier-Design.svg");
   background-repeat: no-repeat;
@@ -150,6 +156,16 @@ function selectOption(option) {
   background-position-x: -900px;
   background-position-y: -900px;
 }
+
+.footer-images {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 25px;
+  margin-top: 40px;
+  padding: 20px;
+}
+
 
 .main-image {
   width: 400px;
@@ -213,7 +229,7 @@ function selectOption(option) {
 .language {
   font-size: 18px !important;
   color: #b57171;
-  margin-top: 8px; /* espacio entre icono y texto */
+  margin-top: 8px; 
   text-align: center;
 }
 
@@ -228,17 +244,5 @@ function selectOption(option) {
   margin-top: 8px;
   text-align: center;
 }
-.footer-images {
-  display: flex;
-  align-items: center;
-  width: 100%;
-  box-sizing: border-box;
-  margin: 30px;
-}
 
-.footer-images img {
-  flex: 1;
-  height: auto;
-  object-fit: contain;
-}
 </style>
